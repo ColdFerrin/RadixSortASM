@@ -2,19 +2,34 @@
 //
 
 #include <iostream>
+#include <random>
+#include <time.h>
+
+using namespace std;
+
+extern "C" void radixSortBuckets(int radix, int numToSort, int* inputArrayPtr, int* outputArrayPtr);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    srand(time(NULL));
+    const int numberToSort = 25;
+    int inputArray[numberToSort] = { 0 };
+    int outputArray[numberToSort] = { 0 };
+
+    for (int i = 0; i < numberToSort; ++i) {
+        inputArray[i] = rand();
+    }
+
+    cout << sizeof(int) << endl;
+
+    //  Printing array elements
+    // using traditional for loop
+    for (int i = 0; i < numberToSort; ++i) {
+        cout << inputArray[i] << "  ";
+    }
+    cout << endl;
+
+    radixSortBuckets(256, numberToSort, inputArray, outputArray);
+
+    std::cout << "Testing Radix Sort" << endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
