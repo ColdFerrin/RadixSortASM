@@ -1,6 +1,7 @@
 .data
 passNum db 0
 posNum dd 0
+endPtr dq 0
 
 .code
 radixSortBuckets proc
@@ -42,6 +43,25 @@ countStep:
 	mov posNum, r10d
 	cmp r10, rdx
 	jb CountStep
+
+PrefixSumPass:
+	mov r10, rcx
+	add r10, rsp
+	mov endPtr, r10
+	mov r10, rsp
+	mov r11, 0
+
+PrefixSumStep:
+	mov r12d, DWORD PTR [r10]
+	add r11, r12
+	mov DWORD PTR [r10], r11d
+	add r10, 4
+	mov r12, endPtr
+	cmp r10, r12
+	jb PrefixSumStep
+
+SortStep:
+	
 
 ; Subrutine Epilogue
 	pop r12
