@@ -9,7 +9,7 @@ using namespace std;
 
 extern "C" void radixSortBuckets(int radix, int numToSort, int* inputArrayPtr, int* outputArrayPtr);
 
-static void RadixSort256(unsigned int* arr, int n); //sort implimentation i am trying to replicate
+static void RadixSort256(unsigned int* arr, int n);
 
 bool areEqual(int arr1[], int arr2[], int length)
 {
